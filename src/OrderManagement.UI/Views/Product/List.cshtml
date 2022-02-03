@@ -1,0 +1,18 @@
+﻿@model ProductListViewModel
+<h1>@Model.CurrentCategory</h1>
+@foreach(var product in Model.Products)
+{
+    string @value = @ViewBag.Url + @product.ImageUrl;
+    <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="thumbnail">
+            <img src="@value" alt="">
+            <div class="caption">
+                <h3 class="pull-right">@product.Price.ToString("c")</h3>
+                <h3>
+                    <a>@product.Name</a>
+                </h3>
+                <p>@product.ShortDescription</p>
+            </div>
+        </div>
+    </div>
+}

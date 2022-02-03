@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\IISServer\OrderManagement</_PublishTargetUrl>
+    <History>True|2022-02-03T05:59:31.9404670Z;True|2022-02-02T00:37:38.1730861+05:30;True|2022-02-02T00:35:21.5255870+05:30;False|2022-02-02T00:35:11.9367111+05:30;True|2022-02-01T23:36:07.8119009+05:30;True|2022-02-01T23:26:55.0352594+05:30;</History>
+  </PropertyGroup>
+</Project>
