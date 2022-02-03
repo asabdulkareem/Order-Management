@@ -25,14 +25,14 @@ namespace OrderManagement.UI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<AppDbContext>(options =>
-            //   options.UseSqlServer(_config.GetConnectionString("SQLDB")));
+            services.AddDbContext<AppDbContext>(options =>
+               options.UseSqlServer(_config.GetConnectionString("SQLDB")));
             services.AddControllersWithViews();
-            services.AddScoped<IProdcuctRepository, MockProductRepository>();
-            //services.AddScoped<IProdcuctRepository, SQLProductRepository>();
-            services.AddScoped<ICategoryRepository, MockCategoryRepository>();
-            //services.AddScoped<ICategoryRepository, SQLCategoryRepository>();
-           
+            //services.AddScoped<IProdcuctRepository, MockProductRepository>();
+            services.AddScoped<IProdcuctRepository, SQLProductRepository>();
+            //services.AddScoped<ICategoryRepository, MockCategoryRepository>();
+            services.AddScoped<ICategoryRepository, SQLCategoryRepository>();
+
             //services.AddSingleton
             //services.AddTransient
         }

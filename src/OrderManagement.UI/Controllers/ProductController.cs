@@ -20,15 +20,22 @@ namespace OrderManagement.UI.Controllers
         }
         public ViewResult List()
         {
-            ViewBag.Title = "List Page";
             string Url = HttpContext.Request.GetEncodedUrl();
             //Url = Path.Combine(Url, @"..\\..\\");
             Url = Url.Remove(Url.LastIndexOf("/"));
             ViewBag.Url = Url.Remove(Url.LastIndexOf("/"));
+            ViewBag.Title = "List Page";            
             ProductListViewModel productListViewModel = new ProductListViewModel();
             productListViewModel.Products = _prodcuctRepository.GetAllProducts();
             productListViewModel.CurrentCategory = "Grocery";
             return View(productListViewModel);
+        }
+        public IActionResult Details(int id)
+        {
+            var product = _prodcuctRepository.GetProductById(id);
+            if (product == null)
+                return NotFound();
+            return View(product);
         }
     }
 }
