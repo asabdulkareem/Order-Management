@@ -32,6 +32,10 @@ namespace OrderManagement.UI
             services.AddScoped<IProdcuctRepository, SQLProductRepository>();
             //services.AddScoped<ICategoryRepository, MockCategoryRepository>();
             services.AddScoped<ICategoryRepository, SQLCategoryRepository>();
+            services.AddScoped(sp => ShoppingCart.GetCart(sp));
+
+            services.AddHttpContextAccessor();
+            services.AddSession();
 
             //services.AddSingleton
             //services.AddTransient
@@ -46,7 +50,7 @@ namespace OrderManagement.UI
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
             //app.Use(async (context, next) =>
             //{
