@@ -21,9 +21,9 @@ namespace OrderManagement.UI.Models
             return _appDbContext.Products.Include(c => c.Category).FirstOrDefault(p => p.ProductId == id);  
         }
 
-        public Product GetProductOfTheWeek()
+        public List<Product> GetProductOfTheWeek()
         {
-            return _appDbContext.Products.Include(c => c.Category).Where(p => p.IsProductOfTheWeek).FirstOrDefault();    
+            return _appDbContext.Products.Include(c => c.Category).Where(p => p.IsProductOfTheWeek).ToList();    
         }
     }
 }

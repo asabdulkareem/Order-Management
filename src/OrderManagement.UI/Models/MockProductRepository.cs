@@ -25,9 +25,9 @@ namespace OrderManagement.UI.Models
         }
 
 
-        public Product GetProductOfTheWeek()
+        public List<Product> GetProductOfTheWeek()
         {
-            return _products.Where(x => x.IsProductOfTheWeek == true).FirstOrDefault();
+            return _products.Where(x => x.IsProductOfTheWeek == true).ToList();
         }
     }
 }
