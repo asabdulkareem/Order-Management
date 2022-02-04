@@ -15,7 +15,7 @@ namespace OrderManagement.UI
 {
     public class Startup
     {
-        private IConfiguration _config;
+        private readonly IConfiguration _config;
         // Here we are using Dependency Injection to inject the Configuration object
         public Startup(IConfiguration config)
         {
@@ -33,7 +33,7 @@ namespace OrderManagement.UI
             //services.AddScoped<ICategoryRepository, MockCategoryRepository>();
             services.AddScoped<ICategoryRepository, SQLCategoryRepository>();
             services.AddScoped(sp => ShoppingCart.GetCart(sp));
-
+            services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddHttpContextAccessor();
             services.AddSession();
 

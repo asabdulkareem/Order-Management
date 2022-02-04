@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using OrderManagement.UI.Models;
 using OrderManagement.UI.ViewModels;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 
 namespace OrderManagement.UI.Controllers
@@ -18,16 +19,27 @@ namespace OrderManagement.UI.Controllers
             _categoryRepository = categoryRepository;
             _prodcuctRepository = prodcuctRepository;
         }
-        public ViewResult List()
+        public ViewResult List(string category)
         {
+            string currentCategory;
+
             string Url = HttpContext.Request.GetEncodedUrl();
             //Url = Path.Combine(Url, @"..\\..\\");
             Url = Url.Remove(Url.LastIndexOf("/"));
             ViewBag.Url = Url.Remove(Url.LastIndexOf("/"));
             ViewBag.Title = "List Page";            
             ProductListViewModel productListViewModel = new ProductListViewModel();
-            productListViewModel.Products = _prodcuctRepository.GetAllProducts();
-            productListViewModel.CurrentCategory = "Grocery";
+            if(string.IsNullOrEmpty(category))
+            {
+                productListViewModel.Products = _prodcuctRepository.GetAllProducts();
+                currentCategory = "All Products";
+            }
+            else
+            {
+                productListViewModel.Products = _prodcuctRepository.GetAllProducts().Where(x => x.Category.CategoryName == category)?.OrderBy(p => p.ProductId);
+                currentCategory = _categoryRepository.GetAllCategories().FirstOrDefault(c => c.CategoryName == category)?.CategoryName;
+            }
+            productListViewModel.CurrentCategory = currentCategory;
             return View(productListViewModel);
         }
         public IActionResult Details(int id)
