@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace OrderManagement.UI.Models
+namespace OrderManagement.Domain.Models
 {
     public class Order
     {

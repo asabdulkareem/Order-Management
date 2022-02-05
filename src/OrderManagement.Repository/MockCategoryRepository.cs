@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using OrderManagement.Domain.Models;
+using System.Collections.Generic;
 
-namespace OrderManagement.UI.Models
+namespace OrderManagement.Repository
 {
     public class MockCategoryRepository : ICategoryRepository
     {

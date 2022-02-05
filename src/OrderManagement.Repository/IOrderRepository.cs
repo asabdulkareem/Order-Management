@@ -1,4 +1,6 @@
-﻿namespace OrderManagement.UI.Models
+﻿using OrderManagement.Domain.Models;
+
+namespace OrderManagement.Repository
 {
     public interface IOrderRepository
     {

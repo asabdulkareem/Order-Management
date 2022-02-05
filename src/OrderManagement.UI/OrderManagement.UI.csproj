@@ -62,4 +62,10 @@
     <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OrderManagement.Data\OrderManagement.Data.csproj" />
+    <ProjectReference Include="..\OrderManagement.Domain\OrderManagement.Domain.csproj" />
+    <ProjectReference Include="..\OrderManagement.Repository\OrderManagement.Repository.csproj" />
+  </ItemGroup>
+
 </Project>

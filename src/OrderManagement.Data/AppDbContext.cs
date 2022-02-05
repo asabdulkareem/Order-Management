@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OrderManagement.Domain.Models;
 
-namespace OrderManagement.UI.Models
+namespace OrderManagement.Data.Models
 {
     public class AppDbContext : DbContext
     {
@@ -71,7 +72,6 @@ namespace OrderManagement.UI.Models
                 ImageUrl = "/Images/cheesecake.jpg",
                 InStock = true,
                 IsProductOfTheWeek = false,
-                ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cheesecakesmall.jpg",
             });
 
             modelBuilder.Entity<Product>().HasData(new Product

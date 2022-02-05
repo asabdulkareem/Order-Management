@@ -1,7 +1,9 @@
-﻿using System;
+﻿using OrderManagement.Data.Models;
+using OrderManagement.Domain.Models;
+using System;
 using System.Collections.Generic;
 
-namespace OrderManagement.UI.Models
+namespace OrderManagement.Repository
 {
     public class OrderRepository : IOrderRepository
     {

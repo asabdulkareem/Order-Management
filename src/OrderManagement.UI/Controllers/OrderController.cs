@@ -1,6 +1,6 @@
-﻿using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using OrderManagement.UI.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using OrderManagement.Domain.Models;
+using OrderManagement.Repository;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 

@@ -1,4 +1,4 @@
-﻿using OrderManagement.UI.Models;
+﻿using OrderManagement.Domain.Models;
 using System.Collections.Generic;
 
 namespace OrderManagement.UI.ViewModels

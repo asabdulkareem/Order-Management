@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using OrderManagement.UI.Models;
+using OrderManagement.Data.Models;
 
 namespace OrderManagement.UI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220204192716_OrdersAdded")]
-    partial class OrdersAdded
+    [Migration("20220205183818_ChangedAmountToQuantityInOrderItems")]
+    partial class ChangedAmountToQuantityInOrderItems
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -173,9 +173,6 @@ namespace OrderManagement.UI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
-
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
@@ -183,6 +180,9 @@ namespace OrderManagement.UI.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.HasKey("OrderDetailId");
@@ -377,10 +377,10 @@ namespace OrderManagement.UI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Amount")
+                    b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProductId")
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<string>("ShoppingCartId")

@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
-using OrderManagement.UI.Models;
+using OrderManagement.Repository;
 using OrderManagement.UI.ViewModels;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 
 namespace OrderManagement.UI.Controllers
 {

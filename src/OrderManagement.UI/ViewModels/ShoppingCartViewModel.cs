@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using OrderManagement.UI.Models;
+﻿using OrderManagement.Repository;
 
 namespace OrderManagement.UI.ViewModels
 {

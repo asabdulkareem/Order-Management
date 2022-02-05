@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using OrderManagement.UI.Models;
-using OrderManagement.UI.ViewModels;
+﻿using OrderManagement.UI.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using OrderManagement.Repository;
 
 namespace OrderManagement.UI.Components
 {

@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using OrderManagement.Data.Models;
+using OrderManagement.Domain.Models;
 
-namespace OrderManagement.UI.Models
+namespace OrderManagement.Repository
 {
     public class ShoppingCart
     {

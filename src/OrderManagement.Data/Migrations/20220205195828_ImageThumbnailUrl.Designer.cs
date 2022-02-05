@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using OrderManagement.UI.Models;
+using OrderManagement.Data.Models;
 
 namespace OrderManagement.UI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220204110717_AddShoppingCartItem")]
-    partial class AddShoppingCartItem
+    [Migration("20220205195828_ImageThumbnailUrl")]
+    partial class ImageThumbnailUrl
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace OrderManagement.UI.Migrations
                 .HasAnnotation("ProductVersion", "5.0.13")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("OrderManagement.UI.Models.Category", b =>
+            modelBuilder.Entity("OrderManagement.Domain.Models.Category", b =>
                 {
                     b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
@@ -101,7 +101,100 @@ namespace OrderManagement.UI.Migrations
                         });
                 });
 
-            modelBuilder.Entity("OrderManagement.UI.Models.Product", b =>
+            modelBuilder.Entity("OrderManagement.Domain.Models.Order", b =>
+                {
+                    b.Property<int>("OrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AddressLine1")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("AddressLine2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("OrderPlaced")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("OrderTotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<string>("State")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("ZipCode")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.HasKey("OrderId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("OrderManagement.Domain.Models.OrderDetail", b =>
+                {
+                    b.Property<int>("OrderDetailId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderDetailId");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderDetails");
+                });
+
+            modelBuilder.Entity("OrderManagement.Domain.Models.Product", b =>
                 {
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
@@ -110,9 +203,6 @@ namespace OrderManagement.UI.Migrations
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
-
-                    b.Property<string>("ImageThumbnailUrl")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
@@ -170,7 +260,6 @@ namespace OrderManagement.UI.Migrations
                         {
                             ProductId = 3,
                             CategoryId = 2,
-                            ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cheesecakesmall.jpg",
                             ImageUrl = "/Images/cheesecake.jpg",
                             InStock = true,
                             IsProductOfTheWeek = false,
@@ -277,17 +366,17 @@ namespace OrderManagement.UI.Migrations
                         });
                 });
 
-            modelBuilder.Entity("OrderManagement.UI.Models.ShoppingCartItem", b =>
+            modelBuilder.Entity("OrderManagement.Domain.Models.ShoppingCartItem", b =>
                 {
                     b.Property<int>("ShoppingCartItemId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Amount")
+                    b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProductId")
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<string>("ShoppingCartId")
@@ -300,9 +389,28 @@ namespace OrderManagement.UI.Migrations
                     b.ToTable("ShoppingCartItems");
                 });
 
-            modelBuilder.Entity("OrderManagement.UI.Models.Product", b =>
+            modelBuilder.Entity("OrderManagement.Domain.Models.OrderDetail", b =>
                 {
-                    b.HasOne("OrderManagement.UI.Models.Category", "Category")
+                    b.HasOne("OrderManagement.Domain.Models.Order", "Order")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OrderManagement.Domain.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("OrderManagement.Domain.Models.Product", b =>
+                {
+                    b.HasOne("OrderManagement.Domain.Models.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -311,18 +419,23 @@ namespace OrderManagement.UI.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("OrderManagement.UI.Models.ShoppingCartItem", b =>
+            modelBuilder.Entity("OrderManagement.Domain.Models.ShoppingCartItem", b =>
                 {
-                    b.HasOne("OrderManagement.UI.Models.Product", "Product")
+                    b.HasOne("OrderManagement.Domain.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId");
 
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("OrderManagement.UI.Models.Category", b =>
+            modelBuilder.Entity("OrderManagement.Domain.Models.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("OrderManagement.Domain.Models.Order", b =>
+                {
+                    b.Navigation("OrderDetails");
                 });
 #pragma warning restore 612, 618
         }
