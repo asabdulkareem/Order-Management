@@ -16,11 +16,17 @@
     @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
     {
         <tr>
-            <td class="text-center">@line.Amount</td>
+            <td class="text-center">@line.Quantity</td>
             <td class="text-left">@line.Product.Name</td>
             <td class="text-right">@line.Product.Price.ToString("c")</td>
             <td class="text-right">
-                @((line.Amount * line.Product.Price).ToString("c"))
+                @((line.Quantity * line.Product.Price).ToString("c"))
+            </td>
+            <td class="addToCart">
+                <p class="button">
+                    <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart"
+                       asp-route-productId="@line.Product.ProductId">Remove From cart</a>
+                </p>
             </td>
         </tr>
     }
@@ -37,5 +43,6 @@
 
 <div class="text-center">
     <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">Check out now!</a>
+    <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="ClearAllItems">Clear Cart!</a>
 </div>
 

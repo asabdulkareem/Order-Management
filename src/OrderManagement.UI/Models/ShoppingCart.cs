@@ -35,7 +35,7 @@ namespace OrderManagement.UI.Models
             return new ShoppingCart(context) { ShoppingCartId = cartId };
         }
 
-        public void AddToCart(Product product, int amount)
+        public void AddToCart(Product product, int Quantity)
         {
             var shoppingCartItem =
                     _appDbContext.ShoppingCartItems.SingleOrDefault(
@@ -47,14 +47,14 @@ namespace OrderManagement.UI.Models
                 {
                     ShoppingCartId = ShoppingCartId,
                     Product = product,
-                    Amount = 1
+                    Quantity = Quantity
                 };
 
                 _appDbContext.ShoppingCartItems.Add(shoppingCartItem);
             }
             else
             {
-                shoppingCartItem.Amount++;
+                shoppingCartItem.Quantity++;
             }
             _appDbContext.SaveChanges();
         }
@@ -69,10 +69,10 @@ namespace OrderManagement.UI.Models
 
             if (shoppingCartItem != null)
             {
-                if (shoppingCartItem.Amount > 1)
+                if (shoppingCartItem.Quantity > 1)
                 {
-                    shoppingCartItem.Amount--;
-                    localAmount = shoppingCartItem.Amount;
+                    shoppingCartItem.Quantity--;
+                    localAmount = shoppingCartItem.Quantity;
                 }
                 else
                 {
@@ -87,11 +87,10 @@ namespace OrderManagement.UI.Models
 
         public List<ShoppingCartItem> GetShoppingCartItems()
         {
-            return ShoppingCartItems ??
-                   (ShoppingCartItems =
+            return ShoppingCartItems ??=
                        _appDbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId)
                            .Include(s => s.Product)
-                           .ToList());
+                           .ToList();
         }
 
         public void ClearCart()
@@ -108,7 +107,7 @@ namespace OrderManagement.UI.Models
         public decimal GetShoppingCartTotal()
         {
             var total = _appDbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId)
-                .Select(c => c.Product .Price * c.Amount).Sum();
+                .Select(c => c.Product .Price * c.Quantity).Sum();
             return total;
         }
     }

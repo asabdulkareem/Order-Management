@@ -4,12 +4,10 @@ namespace OrderManagement.UI.Models
 {
     public class MockCategoryRepository : ICategoryRepository
     {
-        public List<Category> categories { get; set; }
-        private IProdcuctRepository _productRepository;
-        public MockCategoryRepository(IProdcuctRepository productRepository)
+        public List<Category> Categories { get; set; }
+        public MockCategoryRepository()
         {
-            _productRepository = productRepository;
-            categories = new List<Category>()
+            Categories = new List<Category>()
             {
                 new Category{ CategoryId = 1, CategoryName = "Fruits And Vegetable", Description= "All Fruits"},
                 new Category{ CategoryId = 2, CategoryName = "Break Fast And Instance Food", Description= "the Items with breakfast"},
@@ -18,7 +16,7 @@ namespace OrderManagement.UI.Models
         }
         public List<Category> GetAllCategories()
         {
-            return categories;
+            return Categories;
         }
     }
 }

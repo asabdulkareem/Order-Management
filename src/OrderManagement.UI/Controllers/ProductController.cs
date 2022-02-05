@@ -28,7 +28,7 @@ namespace OrderManagement.UI.Controllers
             Url = Url.Remove(Url.LastIndexOf("/"));
             ViewBag.Url = Url.Remove(Url.LastIndexOf("/"));
             ViewBag.Title = "List Page";            
-            ProductListViewModel productListViewModel = new ProductListViewModel();
+            ProductListViewModel productListViewModel = new();
             if(string.IsNullOrEmpty(category))
             {
                 productListViewModel.Products = _prodcuctRepository.GetAllProducts();

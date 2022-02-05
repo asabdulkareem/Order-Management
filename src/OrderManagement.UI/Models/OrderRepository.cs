@@ -25,7 +25,7 @@ namespace OrderManagement.UI.Models
             {
                 var orderDetail = new OrderDetail
                 {
-                    Amount = shoppingCartItem.Amount,
+                    Quantity = shoppingCartItem.Quantity,
                     ProductId = shoppingCartItem.Product.ProductId,
                     Price = shoppingCartItem.Product.ProductId
                 };

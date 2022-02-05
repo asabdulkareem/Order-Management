@@ -56,5 +56,10 @@ namespace OrderManagement.UI.Controllers
             }
             return RedirectToAction("Index");
         }
+        public RedirectToActionResult ClearAllItems()
+        {
+            _shoppingCart.ClearCart();
+            return RedirectToAction("Index");
+        }
     }
 }

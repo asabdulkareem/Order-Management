@@ -5,7 +5,7 @@ namespace OrderManagement.UI.Models
 {
     public class MockProductRepository : IProdcuctRepository
     {
-        List<Product> _products;
+        readonly List<Product> _products;
         public MockProductRepository()
         {
             _products = new List<Product>()

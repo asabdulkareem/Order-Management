@@ -29,9 +29,10 @@ namespace OrderManagement.UI
                options.UseSqlServer(_config.GetConnectionString("SQLDB")));
             services.AddControllersWithViews();
             //services.AddScoped<IProdcuctRepository, MockProductRepository>();
-            services.AddScoped<IProdcuctRepository, SQLProductRepository>();
             //services.AddScoped<ICategoryRepository, MockCategoryRepository>();
+            services.AddScoped<IProdcuctRepository, SQLProductRepository>();
             services.AddScoped<ICategoryRepository, SQLCategoryRepository>();
+            
             services.AddScoped(sp => ShoppingCart.GetCart(sp));
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddHttpContextAccessor();

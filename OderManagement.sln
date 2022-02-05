@@ -9,8 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{395CE903-8
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderManagement.UI", "src\OrderManagement.UI\OrderManagement.UI.csproj", "{58599206-B557-43CB-9D1F-1E1700FD219F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OderManagement.Razor", "src\OderManagement.Razor\OderManagement.Razor.csproj", "{A1051118-393F-4ECB-99A9-44C0796D454C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,17 +19,12 @@ Global
 		{58599206-B557-43CB-9D1F-1E1700FD219F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58599206-B557-43CB-9D1F-1E1700FD219F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58599206-B557-43CB-9D1F-1E1700FD219F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1051118-393F-4ECB-99A9-44C0796D454C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1051118-393F-4ECB-99A9-44C0796D454C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1051118-393F-4ECB-99A9-44C0796D454C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1051118-393F-4ECB-99A9-44C0796D454C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{58599206-B557-43CB-9D1F-1E1700FD219F} = {7F125084-D7C8-434B-B1F5-22AC60505250}
-		{A1051118-393F-4ECB-99A9-44C0796D454C} = {7F125084-D7C8-434B-B1F5-22AC60505250}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DA3FD600-782C-45D7-A480-DFEC93EBC62C}
