@@ -34,7 +34,7 @@ namespace OrderManagement.UI.Controllers
             }
             else
             {
-                productListViewModel.Products = _prodcuctRepository.GetAllProducts().Where(x => x.Category.CategoryName == category)?.OrderBy(p => p.ProductId);
+                productListViewModel.Products = _prodcuctRepository.GetAllProducts().Where(x => x.Category.CategoryName == category)?.OrderBy(p => p.ProductId).ToList();
                 currentCategory = _categoryRepository.GetAllCategories().FirstOrDefault(c => c.CategoryName == category)?.CategoryName;
             }
             productListViewModel.CurrentCategory = currentCategory;

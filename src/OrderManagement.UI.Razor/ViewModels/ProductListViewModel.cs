@@ -1,7 +1,7 @@
 ﻿using OrderManagement.Domain.Models;
 using System.Collections.Generic;
 
-namespace OrderManagement.UI.ViewModels
+namespace OrderManagement.UI.Razor.ViewModels
 {
     public class ProductListViewModel
     {

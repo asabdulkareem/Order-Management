@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using OrderManagement.Domain.Models;
 
-namespace OrderManagement.UI.ViewModels
+namespace OrderManagement.UI.Razor.ViewModels
 {
     public class HomeViewModel
     {
