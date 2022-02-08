@@ -1,6 +1,7 @@
-﻿@using OrderManagement.UI.ViewModels
-@model ShoppingCartViewModel
-
+﻿@page
+@model OrderManagement.UI.Razor.Pages.ShoppingCartPageModel
+@{
+}
 <h2>Your shopping cart</h2>
 <h4>Here are the delicious pies in your shopping cart.</h4>
 <table class="table table-bordered table-striped">
@@ -13,7 +14,7 @@
     </tr>
     </thead>
     <tbody>
-    @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
+    @foreach (var line in Model.ShoppingCartViewModel.ShoppingCart.ShoppingCartItems)
     {
         <tr>
             <td class="text-center">@line.Quantity</td>
@@ -24,7 +25,7 @@
             </td>
             <td class="RemoveToCart">
                 <p class="button">
-                    <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart"
+                    <a class="btn btn-primary" asp-page="ShoppingCartPage" asp-page-handler="RemoveFromShoppingCart"
                        asp-route-productId="@line.Product.ProductId">Remove From cart</a>
                 </p>
             </td>
@@ -35,14 +36,13 @@
     <tr>
         <td colspan="3" class="text-right">Total:</td>
         <td class="text-right">
-            @Model.ShoppingCartTotal.ToString("c")
+            @Model.ShoppingCartViewModel.ShoppingCartTotal.ToString("c")
         </td>
     </tr>
     </tfoot>
 </table>
 
 <div class="text-center">
-    <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">Check out now!</a>
-    <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="ClearAllItems">Clear Cart!</a>
+    <a class="btn btn-primary" asp-page="CheckOut" >Check out now!</a>
+    <a class="btn btn-primary" asp-page="ShoppingCart" asp-page-handler="ClearAllItems">Clear Cart!</a>
 </div>
-

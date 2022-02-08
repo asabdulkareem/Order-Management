@@ -30,6 +30,10 @@ namespace OrderManagement.UI.Razor
             services.AddScoped<IProdcuctRepository, SQLProductRepository>();
             //services.AddScoped<ICategoryRepository, MockCategoryRepository>();
             services.AddScoped<ICategoryRepository, SQLCategoryRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped(sp => ShoppingCart.GetCart(sp));            
+            services.AddHttpContextAccessor();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +52,7 @@ namespace OrderManagement.UI.Razor
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseRouting();
 

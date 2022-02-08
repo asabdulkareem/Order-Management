@@ -36,6 +36,7 @@ namespace OrderManagement.UI.Razor.Pages
                 currentCategory = _categoryRepository.GetAllCategories().FirstOrDefault(c => c.CategoryName == category)?.CategoryName;
             }
             ProductListViewModel.CurrentCategory = currentCategory;
+            Page();
         }
     }
 }
