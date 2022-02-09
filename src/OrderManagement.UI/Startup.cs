@@ -26,7 +26,7 @@ namespace OrderManagement.UI
             services.AddControllersWithViews();
             //services.AddScoped<IProdcuctRepository, MockProductRepository>();
             //services.AddScoped<ICategoryRepository, MockCategoryRepository>();
-            services.AddScoped<IProdcuctRepository, SQLProductRepository>();
+            services.AddScoped<IProductRepository, SQLProductRepository>();
             services.AddScoped<ICategoryRepository, SQLCategoryRepository>();
             
             services.AddScoped(sp => ShoppingCart.GetCart(sp));

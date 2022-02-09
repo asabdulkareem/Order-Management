@@ -20,17 +20,9 @@ namespace OrderManagement.API.Controllers
         public void UploadImage(IFormFile file)
         {
             string workingDirectory = Directory.GetCurrentDirectory();
-            FileStream streams = new FileStream(workingDirectory+file.FileName, FileMode.Create);
+            FileStream streams = new(workingDirectory+file.FileName, FileMode.Create);
             file.CopyTo(streams);
             streams.Close();
-        }
-
-        public HttpRequestMessage GetOrder(int id)
-        {
-            Order order = new Order();
-            if (order == null)
-                return Request.CreateResponse(HttpStatusCode.NotFound, id);
-            return Request.CreateResponse(HttpStatusCode.OK, order);
         }
 
         [HttpPost("CreateOrderWithId")]

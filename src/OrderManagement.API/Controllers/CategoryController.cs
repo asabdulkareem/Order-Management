@@ -30,7 +30,7 @@ namespace OrderManagement.API.Controllers
 
         private static List<CategoryView> MapCategoryWithCategoryView(List<Category> categories)
         {
-            List<CategoryView> categoryViews = new List<CategoryView>();
+            List<CategoryView> categoryViews = new();
             foreach (Category category in categories)
             {
                 categoryViews.Add(new CategoryView()

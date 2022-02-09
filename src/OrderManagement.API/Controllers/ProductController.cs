@@ -26,7 +26,7 @@ namespace OrderManagement.API.Controllers
         }
 
         [HttpGet("GETProductByID")]
-        public IActionResult GETProductByID(int Id, string category)
+        public IActionResult GETProductByID(int Id)
         {
             Product product = ProductRepository.GetProductById(Id);
             ProductView productView = MapProductToProductView(product);
@@ -61,7 +61,7 @@ namespace OrderManagement.API.Controllers
 
         private static List<ProductView> MapProductLitsToProductViewList(List<Product> Products)
         {
-            List<ProductView> productView = new List<ProductView>();
+            List<ProductView> productView = new();
             foreach (Product product in Products)
             {
                 productView.Add(MapProductToProductView(product));
