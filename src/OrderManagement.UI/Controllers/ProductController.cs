@@ -9,10 +9,10 @@ namespace OrderManagement.UI.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly IProdcuctRepository _prodcuctRepository;
+        private readonly IProductRepository _prodcuctRepository;
         private readonly ICategoryRepository _categoryRepository;
 
-        public ProductController(IProdcuctRepository prodcuctRepository, ICategoryRepository categoryRepository)
+        public ProductController(IProductRepository prodcuctRepository, ICategoryRepository categoryRepository)
         {
             _categoryRepository = categoryRepository;
             _prodcuctRepository = prodcuctRepository;

@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace OrderManagement.Repository
 {
-    public class SQLProductRepository : IProdcuctRepository
+    public class SQLProductRepository : IProductRepository
     {
         private readonly AppDbContext _appDbContext;
         public SQLProductRepository(AppDbContext appDbContext)

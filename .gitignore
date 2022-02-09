@@ -9,3 +9,7 @@
 /src/OrderManagement.Repository/obj
 /src/OrderManagement.UI.Razor/bin
 /src/OrderManagement.UI.Razor/obj
+/src/APIBasics/bin
+/src/APIBasics/obj
+/src/OrderManagement.API/bin
+/src/OrderManagement.API/obj

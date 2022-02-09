@@ -6,9 +6,9 @@ namespace OrderManagement.UI.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IProdcuctRepository _productRepository;
+        private readonly IProductRepository _productRepository;
 
-        public HomeController(IProdcuctRepository productRepository)
+        public HomeController(IProductRepository productRepository)
         {
             _productRepository = productRepository;
         }

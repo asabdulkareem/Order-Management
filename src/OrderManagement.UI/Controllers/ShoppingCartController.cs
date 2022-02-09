@@ -9,10 +9,10 @@ namespace OrderManagement.UI.Controllers
 {
     public class ShoppingCartController : Controller
     {
-        private readonly IProdcuctRepository _productRepository;
+        private readonly IProductRepository _productRepository;
         private readonly ShoppingCart _shoppingCart;
 
-        public ShoppingCartController(IProdcuctRepository productRepository, ShoppingCart shoppingCart)
+        public ShoppingCartController(IProductRepository productRepository, ShoppingCart shoppingCart)
         {
             _productRepository = productRepository;
             _shoppingCart = shoppingCart;

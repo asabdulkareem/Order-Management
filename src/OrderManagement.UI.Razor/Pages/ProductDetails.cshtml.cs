@@ -7,11 +7,11 @@ namespace OrderManagement.UI.Razor.Pages
 {
     public class ProductDetailsModel : PageModel
     {
-        private readonly IProdcuctRepository _prodcuctRepository;
+        private readonly IProductRepository _prodcuctRepository;
         private readonly ICategoryRepository _categoryRepository;
         public Product Product { get; set; }
 
-        public ProductDetailsModel(IProdcuctRepository prodcuctRepository, ICategoryRepository categoryRepository)
+        public ProductDetailsModel(IProductRepository prodcuctRepository, ICategoryRepository categoryRepository)
         {
             _categoryRepository = categoryRepository;
             _prodcuctRepository = prodcuctRepository;

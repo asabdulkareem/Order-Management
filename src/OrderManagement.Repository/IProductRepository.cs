@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace OrderManagement.Repository
 {
-    public interface IProdcuctRepository
+    public interface IProductRepository
     {
         List<Product> GetAllProducts();
         List<Product> GetProductOfTheWeek();

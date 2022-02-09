@@ -8,11 +8,11 @@ namespace OrderManagement.UI.Razor.Pages
 {
     public class ShoppingCartPageModel : PageModel
     {
-        private readonly IProdcuctRepository _productRepository;
+        private readonly IProductRepository _productRepository;
         private readonly ShoppingCart _shoppingCart;
         public ShoppingCartViewModel ShoppingCartViewModel { get; set; }
 
-        public ShoppingCartPageModel(IProdcuctRepository productRepository, ShoppingCart shoppingCart)
+        public ShoppingCartPageModel(IProductRepository productRepository, ShoppingCart shoppingCart)
         {
             _productRepository = productRepository;
             _shoppingCart = shoppingCart;

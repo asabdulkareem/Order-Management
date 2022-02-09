@@ -1,13 +1,20 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using OrderManagement.Data.Models;
 using OrderManagement.Repository;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace OrderManagement.UI.Razor
+namespace OrderManagement.API
 {
     public class Startup
     {
@@ -21,19 +28,19 @@ namespace OrderManagement.UI.Razor
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
-
+            services.AddControllers(config =>
+            {
+                config.ReturnHttpNotAcceptable =  true;
+            }).AddXmlDataContractSerializerFormatters();
+            services.AddControllers();
             services.AddDbContext<AppDbContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("SQLDB")));
-
-            //services.AddScoped<IProdcuctRepository, MockProductRepository>();
             services.AddScoped<IProductRepository, SQLProductRepository>();
-            //services.AddScoped<ICategoryRepository, MockCategoryRepository>();
             services.AddScoped<ICategoryRepository, SQLCategoryRepository>();
-            services.AddScoped<IOrderRepository, OrderRepository>();
-            services.AddScoped(sp => ShoppingCart.GetCart(sp));            
-            services.AddHttpContextAccessor();
-            services.AddSession();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Order Management", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,17 +49,9 @@ namespace OrderManagement.UI.Razor
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Order Management v1"));
             }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
-
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseSession();
 
             app.UseRouting();
 
@@ -60,7 +59,10 @@ namespace OrderManagement.UI.Razor
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+            endpoints.MapControllerRoute(
+                 name: "default",
+                 //website/homecontroller/index/
+                 pattern: "api/{Controller}/{id?}");
             });
         }
     }

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace OrderManagement.Repository
 {
-    public class MockProductRepository : IProdcuctRepository
+    public class MockProductRepository : IProductRepository
     {
         readonly List<Product> _products;
         public MockProductRepository()
